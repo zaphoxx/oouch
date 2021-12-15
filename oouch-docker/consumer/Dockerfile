@@ -1,4 +1,5 @@
-FROM python:3.7-slim
+FROM python:3.7-slim-buster
+# switched to 3.7-slim-buster from 3.7-slim (bullseye)
 
 RUN set -ex \
     && apt clean \
@@ -10,7 +11,7 @@ RUN set -ex \
                       build-essential \
                       default-libmysqlclient-dev \
                       openssh-server \
-                      python3-dbus
+                      python3-dbus=1.2.8-3 # specify version compatible with buster 
 
 
 RUN set -ex \

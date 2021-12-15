@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.7-slim-buster
 
 # Install packages needed to run your application (not build deps):
 #   mime-support -- for mime types when serving static files
@@ -40,6 +40,10 @@ EXPOSE 8000
 ENV DJANGO_SETTINGS_MODULE=oouch.settings
 
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
+
+#RUN DATABASE_URL='' /venv/bin/python manage.py wait_for_db
+#RUN DATABASE_URL='' /venv/bin/python manage.py makemigrations
+#RUN DATABASE_URL='' /venv/bin/python manage.py migrate
 RUN DATABASE_URL='' /venv/bin/python manage.py collectstatic --noinput
 
 # Tell uWSGI where to find your wsgi file (change this):
@@ -56,6 +60,7 @@ ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/
 
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
 ENV UWSGI_ROUTE_HOST='^(?!authorization.oouch.htb:8000$) break:400'
+
 
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]

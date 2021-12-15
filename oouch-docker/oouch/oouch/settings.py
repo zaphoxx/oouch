@@ -140,9 +140,12 @@ OAUTH2_PROVIDER = {
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    
 ALLOWED_HOSTS = ['authorization.oouch.htb']
 
 AUTH_PROFILE_MODULE = 'authorization.Profile'

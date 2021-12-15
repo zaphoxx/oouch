@@ -12,7 +12,7 @@ services:
         MYSQL_USER: qtc
         MYSQL_PASSWORD: clarabibi2019!
       volumes:
-        - ./db_auth:/var/lib/mysql
+        - "./db_auth:/var/lib/mysql"
 
   database.consumer.oouch.htb:
     container_name: database.consumer.oouch.htb
@@ -24,11 +24,16 @@ services:
       MYSQL_USER: qtc
       MYSQL_PASSWORD: clarabibi2019!
     volumes:
-      - ./db_cons:/var/lib/mysql
-
+    # initialize database structure
+      - "./init/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+    # folder for database persistence
+      - "./db_cons:/var/lib/mysql"
+      
   authorization.oouch.htb:
      container_name: authorization.oouch.htb
      build: ./oouch
+     # initialize database structure and run server
+     command: bash -c "/venv/bin/python /code/manage.py makemigrations && /venv/bin/python /code/manage.py migrate && /venv/bin/python /code/manage.py runserver 0.0.0.0:8000"
      restart: always
      volumes:
        - ./oouch:/code
