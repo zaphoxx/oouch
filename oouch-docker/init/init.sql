@@ -23,6 +23,6 @@ CREATE UNIQUE INDEX ix_user_email ON user(email);
 
 
 INSERT INTO user
-  (username, email)
+  (username, email, password_hash)
 VALUES
-  ('constantine', 'constantine@oouch.htb');
+  ('qtc', 'qtc@oouch.htb', 'pbkdf2:sha256:50000$ewsqlEhx$b54b82dde4f25dc79deaadb56d708e3d397c3109038d2496b0431a1c1273c4d7');

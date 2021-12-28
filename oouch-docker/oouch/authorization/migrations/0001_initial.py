@@ -24,4 +24,7 @@ class Migration(migrations.Migration):
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
+        migrations.RunSQL(
+            sql='insert into auth_user (password, username, email) values (\'pbkdf2_sha256$150000$PotzkUUOTeGh$nrli7GF5JlQfmEwoe7JTTh76NdLlpXVQRxTJTFEfpYw=\', \'gulu\', \'gulu@oouch.htb\')'    
+        ),
     ]
