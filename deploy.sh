@@ -202,7 +202,7 @@ systemctl enable dbus-server
 systemctl enable vsftpd.service
 
 cd /opt/oouch
-docker-compose build
+#docker-compose build
 
 systemctl start docker
 systemctl start docker-compose
