@@ -115,6 +115,9 @@ cp -r oouch-docker /opt/oouch
 chmod 700 /opt/oouch
 chmod 666 /opt/oouch/consumer/urls.txt
 
+tar -zxf /opt/oouch/db_auth.tar.gz -C /opt/oouch
+tar -zxf /opt/oouch/db_cons.tar.gz -C /opt/oouch
+
 ##########################
 #   install packages     #
 ##########################
