@@ -201,14 +201,15 @@ systemctl enable docker-compose
 systemctl enable dbus-server
 systemctl enable vsftpd.service
 
-cd oouch-docker
+cd /opt/oouch
 docker-compose build
-cd ..
 
 systemctl start docker
 systemctl start docker-compose
 systemctl start dbus-server
 systemctl start vsftpd.service
 systemctl restart ssh
+
+docker-compose up -d && docker-compose logs -f && ss -tlpn
 
 echo "[+] Deployment finished."
