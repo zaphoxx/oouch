@@ -96,7 +96,7 @@ rm mycron
 #      add hostnames     #
 ##########################
 
-if -q -i grep '\.oouch\.htb' "/etc/hosts" ; then
+if grep -q -i '\.oouch\.htb' "/etc/hosts" ; then
     echo '[-] hostname entries seem to already exist. Not modifying /etc/hosts!'
 else
     echo 127.0.0.1 authorization.oouch.htb >> /etc/hosts
